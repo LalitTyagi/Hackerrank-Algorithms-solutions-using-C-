@@ -1,1 +1,1 @@
-# Hackerrank-Algorithms-solutions-using-C-
+# Hackerrank-Algorithms-solutions-using-Cpp
