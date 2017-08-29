@@ -3,60 +3,38 @@ using namespace std;
 
 int main()
 {
-	string s;
+	string s,t;
     cin >> s;
-    int n=s.length();
-    
-    string t;
     cin >> t;
+    
+    int n=s.length();
     int m=t.length();
     
-    int k;
+    int k,nm;
     cin >> k;
     
     if(n<m)
-    {
-    	if(k==m-n)
-    	cout<<"Yes";
-    	else
-    	cout<<"No";
-    }
+    	nm=n;
     else
+    	nm=m;
+    
+    int len=0;
+    for(int i=0,j=0;j<nm;i++)
     {
-    	int a,b,c;
-    	a=0;
-    	if(n>m)
-    	{
-    		for(int i=0;i<m;i++)
-	    	{
-	    		if(s[i]!=t[i])
-	    		{
-	    			a=1;
-	    			break;
-	    		}
-	    	}
-	    	if(a=1)
-	    	{
-	    		b=n-i-1;
-	    		c=m-i-1;
-	    		if(k>=b+c)
-	    			cout<<"Yes";
-    			else
-   					cout<<"No";
-	    	}
-	    	else
-	    	{
-	    		
-	    	}
-    	}
+    	if(s[i]==t[i])
+    		len++;
     	else
-    	{
-    		if(k>=n+n)
-    			cout<<"Yes";
-    		else
-    			cout<<"No";
-    	}
-    }   
+    		break;
+	}
+	
+	if((n+m-(2*len))>k)
+	cout<<"No";
+	else if( (n+m-2*len)%2 == k%2)
+	cout<<"Yes";
+	else if((n+m)-k<0)
+	cout<<"Yes";
+	else
+	cout<<"No";
     
     return 0;
 }
