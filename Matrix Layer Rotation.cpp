@@ -3,57 +3,115 @@ using namespace std;
 
 int main()
 {
-	int m,n,k,a,b,c,d;
-	cin>>m>>n;
-	
-	if(m>n)
-		c=m;
-	else if(m<n)
-		c=n;
-	else
-		c=m;
-	d=0;	
-	while(c>0)
-	{
-		d++;
-		c-=2;
-	}
-	
-	
-	
+	int m,n,k;
+	cin>>m>>n>>k;
 	int arr[m][n];
-	for(int i=0;i<m;i++)
-	{
-		for(int j=0;j<n;j++)
-		cin>>arr[i][j];
-	}
+	int arr1[m][n]={0};
 	
-	a=arr[0][0];
 	for(int i=0;i<m;i++)
-	{
 		for(int j=0;j<n;j++)
+			cin>>arr[i][j];
+	
+	for(int q=0;q<k;q++)
+	{			
+		int x=0,x1=m-1,x2=0,y=0,y1=n-1,y2=0;
+		
+		while(x<=x1 && y<=y1)
 		{
-			if(arr[i][j]==a)
-			b=1;
+			if(x==x1 && y==y1)
+			{
+				arr1[x][y]=arr[x][y];
+			}
+		
+			else if(x==x1)
+			{
+				arr1[x][y1]=arr[x][y];
+				while(y<y1)
+				{
+					arr1[x][y]=arr[x][y+1];
+					y++;
+				}
+			}
+			else if(y==y1)
+			{
+				arr1[x1][y]=arr[x][y];	
+				while(x<x1)
+				{
+					arr1[x][y]=arr[x+1][y];
+					x++;
+				}	
+			}
 			else
 			{
-				b=-1;
-				break;
+				while(y<y1)
+				{
+					arr1[x][y]=arr[x][y+1];
+					y++;
+				}
+				while(x<x1)
+				{
+					arr1[x][y]=arr[x+1][y];
+					x++;
+				}
+				while(y2<y)
+				{
+					arr1[x][y]=arr[x][y-1];
+					y--;
+				}
+				while(x2<x)
+				{
+					arr1[x][y]=arr[x-1][y];
+					x--;
+				}
+					
 			}
+			x++;
+			y++;
+			x2++;
+			y2++;
+			x1--;
+			y1--;	
 		}
-		if(b==-1)
-		break;
-	}
-	
-	if(b==1)
-	{
-		for(int i=0;i<m;i++)
+		
+		
+		
+			for(int i=0;i<m;i++)
 			{
 				for(int j=0;j<n;j++)
-				cout<<arr[i][j];
+				arr[i][j]=arr1[i][j];
+			}
+			
+			
+			for(int i=0;i<m;i++)
+			{
+				for(int j=0;j<n;j++)
+				arr1[i][j]=0;
 			}
 	}
-	else 
-	cout<<"jo bhi main";
 	
+		
+		
+	for(int i=0;i<m;i++)
+		{
+			for(int j=0;j<n;j++)
+			cout<<arr[i][j]<<" ";
+			cout<<"\n";
+		}
+		
+		
+		
+		return 0;
+			
 }
+
+
+
+/*
+
+4 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+
+*/
